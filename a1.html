@@ -15,7 +15,37 @@
         html{
             text-align: center;
         }
+        .tltp{
+            display: none;
+            position: absolute;
+            background-color: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            pointer-events: none;
+            z-index: 999;
+        }
     </style>
+    <script>
+        const s = document.getElementById('s');
+        const tltp = document.getElementById('tltp');
+
+        s.addEventListener('mouseover', () => {
+            tltp.style.display = 'block';
+        });
+
+        s.addEventListener('mouseout', () => {
+            tltp.style.display = 'none';
+        });
+
+        s.addEventListener('mousemove', (e) => {
+            const x = e.clientX - s.getBoundingClientRect().left;
+            const y = e.clientY - s.getBoundingClientRect().top;
+            
+            tltp.style.left = x + 'px';
+            tltp.style.top = y + 'px';
+        });
+    </script>
     </head>
     <body>
         <header>
@@ -31,7 +61,7 @@
             <hr>
         </header>
         <div>
-            <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg' title="майка для программиста" alt="" class="s" >
+            <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg'alt=""  class="s" id="s">
         </div>
         <div>
             <img src='https://m.media-amazon.com/images/I/A1vJUKBjc2L._CLa%7C2140%2C2000%7C71UIyrMD71L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png' title="майка для программиста"  alt="" class="s" >
@@ -43,7 +73,11 @@
             <img src='https://ae04.alicdn.com/kf/S13ba0058cec14d40a6e1e5cb6ce4f2d7l.jpg_480x480.jpg' title="майка для программиста"  alt="" class="s" >
         </div>
         <div>
-            <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg' title="майка для программиста"  alt="" class="s" >
+            <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg' alt="" class="s" >
+            <div class="tltp" id="tltp">
+                майка для программиста
+            </div>
         </div>
+       
     </body>
 </html>
