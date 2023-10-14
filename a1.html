@@ -4,64 +4,60 @@
     <meta charset="utf-8">
     <title>сайт</title>
     <style>
+        li {
+            list-style-type: none;
+        }
+        img + ul {display:none}
+        img:hover + ul {display:block}
         .s{
-           transition: 1s;
+           transition: 0.7s;
            border-radius: 50%;
            border: 3px solid black;
         }
         .s:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         html{
             text-align: center;
         }
-        .tltp{
-            display: none;
-            position: absolute;
-            background-color: black;
-            color: white;
-            padding: 5px;
-            border-radius: 5px;
-            pointer-events: none;
-            z-index: 999;
-        }
+        a.button {
+            display: inline-block;
+            color: black;
+            font-weight: 700;
+            text-decoration: none;
+            user-select: none;
+            padding: .5em 2em;
+            outline: none;
+            border: 2px solid black;
+            border-radius: 1px;
+            transition: 0.2s;
+        } 
+        a.button:hover { background: rgb(214, 208, 208); }
+        a.button:active { background: rgb(122, 109, 109); }
     </style>
-    <script>
-        const s = document.getElementById('s');
-        const tltp = document.getElementById('tltp');
-
-        s.addEventListener('mouseover', () => {
-            tltp.style.display = 'block';
-        });
-
-        s.addEventListener('mouseout', () => {
-            tltp.style.display = 'none';
-        });
-
-        s.addEventListener('mousemove', (e) => {
-            const x = e.clientX - s.getBoundingClientRect().left;
-            const y = e.clientY - s.getBoundingClientRect().top;
-            
-            tltp.style.left = x + 'px';
-            tltp.style.top = y + 'px';
-        });
-    </script>
     </head>
     <body>
         <header>
             <div>
                 <table style="width:100%">
                     <tr>
-                      <th>Магазины</th>
-                      <th>Акции</th>
-                      <th>Обратная связь</th>
+                      <th><a href="#" class="button">Магазины</a></th>
+                      <th><a href="#" class="button">Акции</a></th>
+                      <th><a href="#" class="button">Обратная связь</a></th>
+                      <th><a href="#" class="button">Доставка</a></th>
                     </tr>
                 </table>
             </div>
             <hr>
+            
         </header>
         <div>
             <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg'alt=""  class="s" id="s">
+            <ul style="position: relative; top: -300px; left: 400px;">
+                <li>Размер: hcghagf</li>
+                <li>Цена: ffsggg</li>
+                <li>Материал: dafaf</li>
+            </ul>
         </div>
         <div>
             <img src='https://m.media-amazon.com/images/I/A1vJUKBjc2L._CLa%7C2140%2C2000%7C71UIyrMD71L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png' title="майка для программиста"  alt="" class="s" >
@@ -74,8 +70,6 @@
         </div>
         <div>
             <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg' alt="" class="s" >
-            <div class="tltp" id="tltp">
-                майка для программиста
             </div>
         </div>
        
