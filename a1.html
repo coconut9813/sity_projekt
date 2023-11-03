@@ -5,20 +5,24 @@
     <title>сайт</title> 
 
     <style>
-        li {
-            list-style-type: none;
+        .item {
+
         }
-        img + ul {display:none}
-        img:hover + ul {display:block}
-        .s{
+        .top {
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+        .buy{
            transition: 0.7s;
            border-radius: 50%;
            border: 3px solid black;
+           cursor: pointer;
         }
-        .s:hover {
+        .buy:hover {
             transform: scale(1.1);
         }
-        .s:active{
+        .buy:active{
             transform: scale(1);
         }
         html{
@@ -40,7 +44,131 @@
         } 
         a.button:hover { background: rgb(104, 96, 96); }
         a.button:active { background: rgb(255, 255, 255);}
+
+        #cartBtn {
+            cursor: pointer;
+            color: white;
+            width: auto;
+            font-size: 16px;
+            padding: 6px 12px;
+            background-color: black;
+            float: right;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        #cartBtn:before {
+            content: "Товар уже в корзине";
+            position: absolute;
+            left: -180px;
+            width: auto;
+            background-color: red;
+            padding: 4px 8px 3px 8px;
+            font-size: 14px;
+            transform: translate(0, -40px);
+            top: 4px;
+        }
+        #cartBtn:after {
+            content: '';
+            border: 11px solid transparent;
+            border-left: 11px solid red;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            transform: translate(0, -40px);
+        }
+        #cartBtn.allert:before, #cartBtn.allert:after {
+            animation: animAllert 4s;
+            animation-fill-mode: forwards;
+        }
+        #cartItem {
+            padding: 6px 12px;
+            color: white;
+            float: right;
+            background-color: #000;
+        }
+
+        .fieldCart {
+            border: 1px solid #ccc;
+            padding: 4px;
+        }
+        .fieldCart td {
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        @keyframes animAllert {
+            0% {
+                transform: translate(0, -40px);
+            }
+            20% {
+                transform: translate(0, 0);
+            }
+            80% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, -40px);
+            }
+
+                
+}
     </style>
+
+<script>
+var CartDump = [];
+
+function addToCart(id, name, price) {
+  for (var i = 0; i < CartDump.length; i++) 
+        if (CartDump[i][0] == id) {
+            $('#cartBtn').addClass('allert');
+            setTimeout(function() {
+              $('#cartBtn').removeClass('allert');
+            }, 4000);
+            return i;
+        }
+  CartDump.push([id,name,price]);
+  window.totalCartItem = i+1;
+  addToCartPosition();
+}
+
+function addToCartPosition() {
+  $('#cartItem').text(window.totalCartItem);
+  var container = $("#cart");
+  var code = '<table class="fieldCart">';
+      for (var ii = 0; ii < CartDump.length; ii++) {
+          code += '<tr>';
+        for (var iii = 0; iii < 3; iii++) {
+          code +=  '<td>' + CartDump[ii][iii] + '</td>';
+        }
+          code +=  '<td><button onclick="myOff(' + ii + ')">x</button></td>'; 
+          code += '</tr>';
+      }
+
+      code += '</table>';
+container.html(code);
+}
+
+function myOff(ii) {
+    CartDump.splice(ii,1);
+    window.totalCartItem = window.totalCartItem-1;
+    addToCartPosition();
+  }
+
+function clsCart() {
+  CartDump = [];
+  window.totalCartItem = 0;
+  addToCartPosition();
+}
+$('.buy').on('click', function() {
+  //$(this).attr('disabled', true);
+  //$(this).text('Уже в корзине');
+  var itemId = $(this).data('id');
+  var itemName = $(this).data('name');
+  var itemPrice = $(this).data('price');
+  addToCart(itemId, itemName, itemPrice);
+})
+</script>
+
     </head>
     <body>
         <header>
@@ -57,47 +185,39 @@
             <hr>
             
         </header>
-        <div>
-            <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg'alt=""  class="s" id="s">
-            <ul style="position: absolute;top: 45%; left: 930px;">
-                <li>Размер: hcghagf</li>
-                <li>Цена: ffsggg</li>
-                <li>Материал: dafaf</li>
-            </ul>
+
+        <div class="top">
+            <span id="cartItem">0</span>
+            <button id="cartBtn">Корзина</button>
+            <div id="cart"></div>
         </div>
-        <div>
-            <img src='https://m.media-amazon.com/images/I/A1vJUKBjc2L._CLa%7C2140%2C2000%7C71UIyrMD71L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png'alt="" class="s" >
-            <ul style="position: absolute;top: 120%; left: 930px;">
-                <li>Размер: hcghagf</li>
-                <li>Цена: ffsggg</li>
-                <li>Материал: dafaf</li>
-            </ul>
+
         </div>
-        <div>
-            <img src='https://storage.vsemayki.ru/images/0/2/2511/2511843/previews/people_2_tshirt_oversize_front_white_500.jpg'alt="" class="s" >
-            <ul style="position: absolute;top: 200%; left: 930px;">
-                <li>Размер: hcghagf</li>
-                <li>Цена: ffsggg</li>
-                <li>Материал: dafaf</li>
-            </ul>
+        <div class="item">
+            <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg'
+            alt=""  class="buy" data-id = '1'
+            data-name="Майка для программиста" data-price="2899">
         </div>
-        <div>
-            <img src='https://ae04.alicdn.com/kf/S13ba0058cec14d40a6e1e5cb6ce4f2d7l.jpg_480x480.jpg'alt="" class="s" >
-            <ul style="position: absolute;top: 275%; left: 930px;">
-                <li>Размер: hcghagf</li>
-                <li>Цена: ffsggg</li>
-                <li>Материал: dafaf</li>
-            </ul>
+        <div class="item">
+            <img src='https://m.media-amazon.com/images/I/A1vJUKBjc2L._CLa%7C2140%2C2000%7C71UIyrMD71L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png'
+            alt="" class="buy"  data-id = '2'
+            data-name="Майка для программиста" data-price="1899">
         </div>
-        <div>
-            <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg' alt="" class="s" >
-            <ul style="position: absolute;top: 350%; left: 930px;">
-                <li>Размер: hcghagf</li>
-                <li>Цена: ffsggg</li>
-                <li>Материал: dafaf</li>
-            </ul>
+        <div class="item">
+            <img src='https://storage.vsemayki.ru/images/0/2/2511/2511843/previews/people_2_tshirt_oversize_front_white_500.jpg'
+            alt="" class="buy"  data-id = '3'
+            data-name="Майка для программиста" data-price="2999">
+        </div>
+        <div class="item">
+            <img src='https://ae04.alicdn.com/kf/S13ba0058cec14d40a6e1e5cb6ce4f2d7l.jpg_480x480.jpg'
+            alt="" class="buy"  data-id = '4'
+            data-name="Майка для программиста" data-price="3899">
+        </div>
+        <div class="item">
+            <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg'
+            alt="" class="buy"  data-id = '5'
+            data-name="Майка для программиста" data-price="999">
             </div>
         </div>
-       
     </body>
 </html>
