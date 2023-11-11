@@ -5,9 +5,6 @@
     <title>сайт</title> 
 
     <style>
-        .item {
-
-        }
         .top {
             position: fixed;
             right: 0;
@@ -162,10 +159,10 @@ function clsCart() {
 $('.buy').on('click', function() {
   //$(this).attr('disabled', true);
   //$(this).text('Уже в корзине');
-  var itemId = $(this).data('id');
-  var itemName = $(this).data('name');
-  var itemPrice = $(this).data('price');
-  addToCart(itemId, itemName, itemPrice);
+  var buyId = $(this).data('id');
+  var buyName = $(this).data('name');
+  var buyPrice = $(this).data('price');
+  addToCart(buyId, buyName, buyPrice);
 })
 </script>
 
@@ -193,30 +190,30 @@ $('.buy').on('click', function() {
         </div>
 
         </div>
-        <div class="item">
+        <div">
             <img src='https://storage.vsemayki.ru/images/0/2/2098/2098291/previews/people_7_manshort_front_white_500.jpg'
             alt=""  class="buy" data-id = '1'
-            data-name="Майка для программиста" data-price="2899">
+            data-name="Майка для программиста" data-price="2899" title="Майка для программиста ; цена: 2899">
         </div>
-        <div class="item">
+        <div>
             <img src='https://m.media-amazon.com/images/I/A1vJUKBjc2L._CLa%7C2140%2C2000%7C71UIyrMD71L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png'
             alt="" class="buy"  data-id = '2'
-            data-name="Майка для программиста" data-price="1899">
+            data-name="Майка для программиста" data-price="1899" title="Майка для программиста ; цена: 1899">
         </div>
-        <div class="item">
+        <div>
             <img src='https://storage.vsemayki.ru/images/0/2/2511/2511843/previews/people_2_tshirt_oversize_front_white_500.jpg'
             alt="" class="buy"  data-id = '3'
-            data-name="Майка для программиста" data-price="2999">
+            data-name="Майка для программиста" data-price="2999" title="Майка для программиста ; цена: 2999">
         </div>
-        <div class="item">
+        <div>
             <img src='https://ae04.alicdn.com/kf/S13ba0058cec14d40a6e1e5cb6ce4f2d7l.jpg_480x480.jpg'
             alt="" class="buy"  data-id = '4'
-            data-name="Майка для программиста" data-price="3899">
+            data-name="Майка для программиста" data-price="3899" title="Майка для программиста ; цена: 3899">
         </div>
-        <div class="item">
+        <div>
             <img src='https://storage.vsemayki.ru/images/0/3/3156/3156765/previews/people_1_woman_tshirt_front_black_500.jpg'
             alt="" class="buy"  data-id = '5'
-            data-name="Майка для программиста" data-price="999">
+            data-name="Майка для программиста" data-price="999" title="Майка для программиста ; цена: 999">
             </div>
         </div>
     </body>
