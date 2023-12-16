@@ -1,0 +1,17 @@
+.buy{
+   transition: 0.7s;
+   border-radius: 50%;
+   border: 3px solid black;
+   cursor: pointer;
+   width: 500px;
+   height: 500px;
+        }
+.buy:hover {
+   transform: scale(1.1);
+        }
+.buy:active{
+   transform: scale(1);
+        }
+html{
+   text-align: center;
+        }
